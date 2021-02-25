@@ -1,0 +1,42 @@
+name: 'cfn-lint-action'
+description: 'executes cfn-lint'
+inputs:
+  args:
+    description: 'cli arguments'
+    required: true
+    default: ''
+outputs:
+  results:
+    description: "scan results"
+    value: "${{ steps.scan.outputs.results }}"
+runs:
+  using: "composite"
+  steps:
+    - name: install cfn_lint
+      id: install
+      run: |
+        echo "::group::Installing cfn-lint"
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install cfn-lint
+        echo "::endgroup::"
+
+        echo "::group::Updating specs & iam policies"
+        cfn-lint --update-specs
+        cfn-lint --update-iam-policies
+        echo "::endgroup::"
+      shell: bash
+    - name: scan
+      id: scan
+      run: |
+        results=$(cfn-lint ${{ inputs.args }} "${{ inputs.path }}")
+        results="${results//'%'/'%25'}"
+        results="${results//$'\n'/'%0A'}"
+        results="${results//$'\r'/'%0D'}"
+        echo "::set-output name=results::$(echo "$results")"
+      shell: bash
+    - name: Print Output
+      id: print
+      run: |
+        echo "::group::Results"
+        echo "${{ steps.scan.outputs.results }}"
+        echo "::endgroup::"
+      shell: bash
