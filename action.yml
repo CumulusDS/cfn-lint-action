@@ -16,7 +16,8 @@ runs:
       id: install
       run: |
         echo "::group::Installing cfn-lint"
-        HOMEBREW_NO_AUTO_UPDATE=1 brew install cfn-lint
+        #HOMEBREW_NO_AUTO_UPDATE=1 brew install cfn-lint
+        pip3 install cfn-lint
         echo "::endgroup::"
 
         echo "::group::Updating specs & iam policies"
@@ -27,11 +28,11 @@ runs:
     - name: scan
       id: scan
       run: |
-        echo Scanning...
+        echo Scanning... && echo ""
         results=$(cfn-lint ${{ inputs.args }})
+        echo $results
         results="${results//'%'/'%25'}"
         results="${results//$'\n'/'%0A'}"
         results="${results//$'\r'/'%0D'}"
         echo "::set-output name=results::$(echo "$results")"
-        echo $results
       shell: bash
