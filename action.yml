@@ -18,21 +18,30 @@ runs:
         echo "::group::Installing cfn-lint"
         #HOMEBREW_NO_AUTO_UPDATE=1 brew install cfn-lint
         pip3 install cfn-lint
+        echo "/home/runner/.local/bin" >> $GITHUB_PATH
+        echo "::endgroup::"
+
+        echo "::group::cfn-lint version"
+        /home/runner/.local/bin/cfn-lint --version
         echo "::endgroup::"
 
         echo "::group::Updating specs & iam policies"
-        cfn-lint --update-specs
-        cfn-lint --update-iam-policies
+        /home/runner/.local/bin/cfn-lint --update-specs
+        #/home/runner/.local/bin/cfn-lint --update-iam-policies
         echo "::endgroup::"
       shell: bash
     - name: scan
       id: scan
       run: |
         echo Scanning... && echo ""
-        results=$(cfn-lint ${{ inputs.args }})
-        echo $results
+        results=$(/home/runner/.local/bin/cfn-lint ${{ inputs.args }})
         results="${results//'%'/'%25'}"
         results="${results//$'\n'/'%0A'}"
         results="${results//$'\r'/'%0D'}"
         echo "::set-output name=results::$(echo "$results")"
+      shell: bash
+    - name: Print Output
+      id: print
+      run: |
+        echo "${{ steps.scan.outputs.results }}"
       shell: bash
