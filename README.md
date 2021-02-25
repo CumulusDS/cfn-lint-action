@@ -1,8 +1,8 @@
-[![Create Release](https://github.com/CumulusDS/cfn-lint/actions/workflows/release.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint/actions/workflows/release.yml)  
+[![Create Release](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/release.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/release.yml)  
 
-[![Import Labels](https://github.com/CumulusDS/cfn-lint/actions/workflows/labels_import.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint/actions/workflows/labels_import.yml)  [![Sync Labels](https://github.com/CumulusDS/cfn-lint/actions/workflows/labels_sync.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint/actions/workflows/labels_sync.yml)  
+[![Import Labels](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/labels_import.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/labels_import.yml)  [![Sync Labels](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/labels_sync.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/labels_sync.yml)  
 
-[![PR AutoLabeler](https://github.com/CumulusDS/cfn-lint/actions/workflows/autolabeler.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint/actions/workflows/autolabeler.yml)  [![Assigner](https://github.com/CumulusDS/cfn-lint/actions/workflows/assign.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint/actions/workflows/assign.yml)  
+[![PR AutoLabeler](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/autolabeler.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/autolabeler.yml)  [![Assigner](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/assign.yml/badge.svg)](https://github.com/CumulusDS/cfn-lint-action/actions/workflows/assign.yml)  
 
 Runs cfn-lint with scan results as output
 
