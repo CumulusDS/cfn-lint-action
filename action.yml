@@ -27,16 +27,11 @@ runs:
     - name: scan
       id: scan
       run: |
-        results=$(cfn-lint ${{ inputs.args }} "${{ inputs.path }}")
+        echo Scanning...
+        results=$(cfn-lint ${{ inputs.args }})
         results="${results//'%'/'%25'}"
         results="${results//$'\n'/'%0A'}"
         results="${results//$'\r'/'%0D'}"
         echo "::set-output name=results::$(echo "$results")"
-      shell: bash
-    - name: Print Output
-      id: print
-      run: |
-        echo "::group::Results"
-        echo "${{ steps.scan.outputs.results }}"
-        echo "::endgroup::"
+        echo $results
       shell: bash
